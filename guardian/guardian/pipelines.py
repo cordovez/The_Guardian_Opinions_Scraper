@@ -25,6 +25,7 @@ class MongoDBPipeline:
 
     def process_item(self, item, spider):
         collection_name = spider.name
+
         if item["content"] is not None and item["author"] is not None:
             self.db[collection_name].insert_one(ItemAdapter(item).asdict())
             return item
